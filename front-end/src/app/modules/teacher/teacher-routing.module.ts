@@ -5,9 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AfterLoginTeacherService } from 'src/app/services/after-login-teacher.service';
 
 //Components
-import { TaskListComponent } from './components/task/task-list/task-list.component';
+
 import { TaskMainComponent } from './components/task/task-main/task-main.component';
 import { TaskCreateComponent } from './components/task/task-create/task-create.component';
+import { MatterListComponent } from './components/matter/matter-list/matter-list.component';
 
 
 const teacherRoutes: Routes = [
@@ -17,9 +18,12 @@ const teacherRoutes: Routes = [
 		canActivate : [AfterLoginTeacherService],
 		children: [
 			{ 
-				path : 'task', 
+				path : 'task/matters', 
+				component: MatterListComponent,
+			},
+			{ 
+				path : 'task/matter/:id', 
 				component: TaskCreateComponent,
-				
 			}
 		]
 	}

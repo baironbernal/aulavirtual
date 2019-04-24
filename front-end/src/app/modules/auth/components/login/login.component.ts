@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('admin-panel/career');
     }
     else if(role === 'teacher') {
-      this.router.navigateByUrl('teacher-panel/task');
+      this.router.navigateByUrl('teacher-panel/task/matters');
     }
 
     

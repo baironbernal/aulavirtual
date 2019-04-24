@@ -22,7 +22,9 @@ export class TaskService {
     return this.http.get(`${this.baseUrl}/api/auth/task/create`, this.optionsHeaders)
   }
 
-  getTaskByCut(cut_id) {
-    return this.http.get(`${this.baseUrl}/api/auth/task/cut/${cut_id}`, this.optionsHeaders)
+  show(matter_id) {
+    return this.http.get(`${this.baseUrl}/api/auth/task/teacher/${matter_id}`, this.optionsHeaders)
   }
+
+
 }

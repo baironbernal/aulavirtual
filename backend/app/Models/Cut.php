@@ -9,4 +9,9 @@ class Cut extends Model
     protected $fillable = [
         
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Models\Task');
+    }
 }

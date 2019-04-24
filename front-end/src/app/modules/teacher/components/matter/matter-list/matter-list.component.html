@@ -1,0 +1,13 @@
+
+<h1>Materias que dictas:</h1>
+<div class="bd-example">
+    <ul>
+      <li *ngFor="let matter of matters">
+        <a [routerLink]="['/teacher-panel/task/matter', matter.id]">
+          {{matter.name}}
+        </a>
+      </li>
+    </ul>
+    
+    
+    </div>

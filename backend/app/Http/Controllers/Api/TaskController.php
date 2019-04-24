@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\User;
 use App\Models\Cut;
 use App\Models\Task;
 use App\Models\Matter;
@@ -15,8 +16,6 @@ class TaskController extends Controller
         $this->middleware(['jwt.auth']);
         
     }
-
-    private $matter = Matter::where('user_id', auth()->user())->first();
 
     private $validations = [
         'name' => 'required|string',
@@ -46,6 +45,10 @@ class TaskController extends Controller
      */
     public function indexByCut($cut_id)
     {
+        $user = auth()->user();
+        
+        return response()->json(["user" => $user->matters->first()]);
+
         $tasks = Task::where([
             'matter_id', $this->matter->id,
             'cut_id', $cut_id
@@ -62,7 +65,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return response()->json(["cuts" => Cut::all()]);
+        $mattersTeacher = auth()->user()->matters;
+        
+        return response()->json(["matters" => $mattersTeacher]);
     }
 
     /**
@@ -119,6 +124,26 @@ class TaskController extends Controller
         //
     }
 
+    public function showTeacher($matter_id)
+    {   
+        $matter = Matter::findOrFail($matter_id);
+
+        if(! $matter->user_id === auth()->user()->id) {
+            return response()->json(["message" => 'Usted no tiene acceso']);
+        }
+        
+        $cutsTask = Task::where('matter_id', $matter_id)
+        ->orderBy('cut_id')
+        ->get()
+        ->groupBy(function($item) {
+            return $item->cut->name;
+        })
+        ->toArray();
+
+        return response()->json(["cutsTask" => $cutsTask]);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -139,7 +164,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        
     }
 
     /**

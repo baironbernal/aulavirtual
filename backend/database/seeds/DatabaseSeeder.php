@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MattersTableSeeder::class);
         $this->call(CutsTableSeeder::class);
         $this->call(TypeTaskTableSeeder::class);
+        $this->call(TasksTableSeeder::class);
     }
 }

@@ -51,6 +51,7 @@ Route::group(['prefix' => 'auth'], function() {
     Route::group(['middleware' => ['role:teacher']], function () {
         Route::get('task/cut/{cut}', 'Api\TaskController@indexByCut')->name('task.index.cut');
         Route::post('task', 'Api\TaskController@store')->name('task.store');
+        Route::get('task/teacher/{matter}', 'Api\TaskController@showTeacher')->name('task.show.matter');
         Route::get('task/create', 'Api\TaskController@create')->name('task.create');
         Route::put('task/{task}', 'Api\TaskController@update')->name('task.update');
         Route::delete('task/{task}', 'Api\TaskController@destroy')->name('task.destroy');
@@ -61,12 +62,6 @@ Route::group(['prefix' => 'auth'], function() {
         Route::get('task', 'Api\TaskController@index')->name('task.index');
         Route::get('task/{task}', 'Api\TaskController@show')->name('task.show');
     });
-    
-
-
-    
-
-    
 
     Route::post('login', 'Api\AuthController@login');
     
