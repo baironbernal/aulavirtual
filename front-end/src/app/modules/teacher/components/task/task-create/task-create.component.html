@@ -1,0 +1,17 @@
+<div class="accordion" id="accordionExample" *ngFor="let cut of cuts">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          {{cut.name}}
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <app-task-list [cut_id]="cut.id"></app-task-list>
+      </div>
+    </div>
+  </div>
+</div>

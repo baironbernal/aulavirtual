@@ -1,0 +1,30 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCareerModal">
+    Crear carrera
+  </button>&nbsp;
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadExcelModal">
+      Subir excel
+    </button>
+  <app-career-create></app-career-create>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Codigo</th>
+        <th scope="col">Numero de semestres</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let career of careers" [attr.id]="career.id">
+              <th scope="row">{{career.id}}</th>
+              <td>{{career.name}}</td>
+              <td>{{career.code}}</td>
+              <td>{{career.semesters}}</td>
+              <td>{{career.status}}</td>
+              <td><a [routerLink]="['./edit', career.id]">Editar</a></td>
+              <td><button (click)="delete(career)" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>

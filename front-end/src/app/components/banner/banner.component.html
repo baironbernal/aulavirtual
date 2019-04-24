@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" style="color:white">Aula virtual</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']" [hidden]="loggedIn" >Principal <span class="sr-only">(current)</span></a>
+              <!--Administrator-->
+              <span  *ngIf="loggedIn">
+                <a class="nav-link" [routerLink]="['admin-panel/career']" [routerLinkActive]="['active']" *ngIf="role == 'admin'">Administracion <span class="sr-only">(current)</span></a>
+                <a class="nav-link" [routerLink]="['teacher-panel/task']" [routerLinkActive]="['active']" *ngIf="role == 'teacher'">Panel de docente <span class="sr-only">(current)</span></a>
+              </span>
+              
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/contact']" [routerLinkActive]="['active']" [hidden]="loggedIn" >Contacto</a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+              <a class="btn btn-outline-success my-2 my-sm-0" [routerLink]="['/auth-panel']" [routerLinkActive]="['active']" *ngIf="!loggedIn">Login</a>
+              <a class="btn btn-outline-success my-2 my-sm-0" href="#" (click)="logout($event)" *ngIf="loggedIn">Logout</a>
+              
+          </form>
+        </div>
+  </nav>
+

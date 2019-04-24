@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createMatterModal">
+  Crear materia
+</button>
+<app-matter-create></app-matter-create>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Profesor</th>
+      <th scope="col">Carrera</th>
+      <th scope="col">Estado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let matter of matters" [attr.id]="matter.id">
+            <th scope="row">{{matter.id}}</th>
+            <td>{{matter.name}}</td>
+            <td>{{matter.user.first_name}}</td>
+            <td><span *ngFor="let career of matter.careers">{{career.name}} <hr></span></td>
+            <td>{{matter.status}}</td>
+            <td><a [routerLink]="['./edit', matter.id]">Editar</a></td>
+            <td><button (click)="delete(matter)" class="btn btn-danger">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>

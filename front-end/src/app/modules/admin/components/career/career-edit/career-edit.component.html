@@ -1,0 +1,28 @@
+<form *ngIf="career" #editForm=ngForm (ngSubmit)="update()">
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Nombre de la carrera</label>
+      <input type="text" class="form-control" [(ngModel)]="career.name" name="name" />
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Código</label>
+        <input type="number" class="form-control" name="code" [(ngModel)]="career.code" />
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Example select</label>
+      <select class="form-control" id="exampleFormControlSelect1" name="semesters">
+        <option *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]"
+        [selected]="number === 'career.semesters'" [value]="number">{{number}}</option>
+      </select>
+    </div>
+    <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio1" name="active" class="custom-control-input"
+         [checked]="career.status === 1">
+        <label class="custom-control-label" for="customRadio1">Activado</label>
+      </div>
+      <div class="custom-control custom-radio">
+        <input type="radio" id="customRadio2" name="unable" class="custom-control-input"
+        [checked]="career.status === 0">
+        <label class="custom-control-label" for="customRadio2">Desactivar</label>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!editForm.valid">Actualizar</button>
+</form>
